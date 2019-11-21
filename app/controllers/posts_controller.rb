@@ -35,7 +35,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy # удаляем его
-    redirect_to posts_path # переходим на все статьи
+    redirect_to posts_path
   end
 
 
