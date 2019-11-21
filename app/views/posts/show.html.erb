@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="content-show p-2">
     <h1> <%= @post.title %> </h1>
     <p> <%= @post.body %> </p>
@@ -10,5 +11,30 @@
     <%= link_to 'Удалить', post_path(@post), method: :delete, data:{ confirm: 'Вы уверены?'} %>
   </small>
 
+
+
+<!--блок для создания коммента-->
+  <%= form_for ([@post,Comment.new]) do |f| %>
+    <div class="card">
+      <div class="card-body">
+        <p class="card-title">Комментарий</p>
+        <p class="card-text"><%= f.text_area(:body) %></p>
+        <%= f.submit "Сохранить", class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <br>
+  <% end %>
+
+
+
+
+
+<!--блок для показа коммента-->
+  <% @post.comments.each do |comment| %>
+    <p class="comment-body"><%= comment.body %></p>
+    <small class="time-commets"><%= comment.created_at.to_date.strftime("%d %B,%Y") %></small>
+    <hr>
+    <br>
+  <% end %>
 
 </div>
